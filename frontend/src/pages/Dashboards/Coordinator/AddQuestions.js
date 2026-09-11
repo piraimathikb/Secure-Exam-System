@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Lock } from "lucide-react";
 
 function AddQuestions() {
   const location = useLocation();
@@ -533,7 +534,8 @@ function AddQuestions() {
             lineHeight: "1.6",
           }}
         >
-          🔐 <strong>SecureExam Protection:</strong> After publishing,
+          <Lock size={15} style={{ display: "inline-block", verticalAlign: "-2px", marginRight: "6px" }} />
+          <strong>SecureExam Protection:</strong> After publishing,
           the examination data will be prepared for encryption,
           IPFS storage, and blockchain verification.
         </div>

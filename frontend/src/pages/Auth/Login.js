@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Lock, Link2, ShieldCheck } from "lucide-react";
 
 function Login() {
   const navigate = useNavigate();
@@ -40,8 +41,8 @@ function Login() {
         {/* Left Side */}
         <div className="login-info">
 
-          <div className="login-brand">
-            🔐 SecureExam
+          <div className="login-brand" style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+            <Lock size={22} /> SecureExam
           </div>
 
           <h1>
@@ -56,7 +57,7 @@ function Login() {
           <div className="login-security">
 
             <div>
-              <span>🔐</span>
+              <span><Lock size={22} /></span>
 
               <div>
                 <strong>Secure Authentication</strong>
@@ -65,7 +66,7 @@ function Login() {
             </div>
 
             <div>
-              <span>⛓️</span>
+              <span><Link2 size={22} /></span>
 
               <div>
                 <strong>Blockchain Verification</strong>
@@ -74,7 +75,7 @@ function Login() {
             </div>
 
             <div>
-              <span>🛡️</span>
+              <span><ShieldCheck size={22} /></span>
 
               <div>
                 <strong>Protected Data</strong>

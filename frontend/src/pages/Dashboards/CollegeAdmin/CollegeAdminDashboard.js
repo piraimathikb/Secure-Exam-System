@@ -1,3 +1,16 @@
+import {
+  Lock,
+  LayoutDashboard,
+  Users,
+  GraduationCap,
+  BookOpen,
+  FileText,
+  BarChart2,
+  Settings,
+  LogOut,
+  Bell,
+} from "lucide-react";
+
 function CollegeAdminDashboard() {
   return (
     <div className="college-dashboard">
@@ -5,8 +18,8 @@ function CollegeAdminDashboard() {
       {/* Sidebar */}
       <aside className="college-sidebar">
 
-        <div className="college-logo">
-          🔐 SecureExam
+        <div className="college-logo" style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+          <Lock size={20} /> SecureExam
         </div>
 
         <div className="college-role">
@@ -16,37 +29,37 @@ function CollegeAdminDashboard() {
         <nav className="college-nav">
 
           <a href="#dashboard" className="active">
-            <span>▦</span>
+            <span><LayoutDashboard size={18} /></span>
             Dashboard
           </a>
 
           <a href="#coordinators">
-            <span>👥</span>
+            <span><Users size={18} /></span>
             Coordinators
           </a>
 
           <a href="#students">
-            <span>🎓</span>
+            <span><GraduationCap size={18} /></span>
             Students
           </a>
 
           <a href="#subjects">
-            <span>📚</span>
+            <span><BookOpen size={18} /></span>
             Subjects
           </a>
 
           <a href="#examinations">
-            <span>📝</span>
+            <span><FileText size={18} /></span>
             Examinations
           </a>
 
           <a href="#results">
-            <span>📊</span>
+            <span><BarChart2 size={18} /></span>
             Results
           </a>
 
           <a href="#settings">
-            <span>⚙️</span>
+            <span><Settings size={18} /></span>
             Settings
           </a>
 
@@ -54,7 +67,7 @@ function CollegeAdminDashboard() {
 
         <div className="college-logout">
           <a href="/">
-            <span>↪</span>
+            <span><LogOut size={18} /></span>
             Logout
           </a>
         </div>
@@ -75,7 +88,7 @@ function CollegeAdminDashboard() {
           <div className="college-profile">
 
             <div className="college-notification">
-              🔔
+              <Bell size={18} />
             </div>
 
             <div className="college-avatar">
@@ -119,7 +132,7 @@ function CollegeAdminDashboard() {
           <div className="college-stat-card">
 
             <div className="college-stat-icon">
-              👥
+              <Users size={22} color="#2563eb" />
             </div>
 
             <div>
@@ -133,7 +146,7 @@ function CollegeAdminDashboard() {
           <div className="college-stat-card">
 
             <div className="college-stat-icon">
-              🎓
+              <GraduationCap size={22} color="#2563eb" />
             </div>
 
             <div>
@@ -147,7 +160,7 @@ function CollegeAdminDashboard() {
           <div className="college-stat-card">
 
             <div className="college-stat-icon">
-              📚
+              <BookOpen size={22} color="#2563eb" />
             </div>
 
             <div>
@@ -161,7 +174,7 @@ function CollegeAdminDashboard() {
           <div className="college-stat-card">
 
             <div className="college-stat-icon">
-              📝
+              <FileText size={22} color="#2563eb" />
             </div>
 
             <div>
@@ -339,22 +352,22 @@ function CollegeAdminDashboard() {
           <div className="college-quick-actions">
 
             <button>
-              <span>👥</span>
+              <span><Users size={16} /></span>
               Add Coordinator
             </button>
 
             <button>
-              <span>🎓</span>
+              <span><GraduationCap size={16} /></span>
               Manage Students
             </button>
 
             <button>
-              <span>📚</span>
+              <span><BookOpen size={16} /></span>
               Manage Subjects
             </button>
 
             <button>
-              <span>📊</span>
+              <span><BarChart2 size={16} /></span>
               View Results
             </button>
 

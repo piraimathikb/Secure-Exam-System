@@ -1,5 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import {
+  Lock,
+  LayoutDashboard,
+  FileText,
+  ClipboardCheck,
+  User,
+  Settings,
+  LogOut,
+  Sparkles,
+  CheckCircle2,
+  Trophy,
+  BarChart2,
+  Link2,
+  ShieldCheck,
+} from "lucide-react";
 
 function StudentDashboard() {
   const upcomingExams = [
@@ -79,9 +94,12 @@ function StudentDashboard() {
             fontWeight: "700",
             padding: "0 10px 30px",
             borderBottom: "1px solid #374151",
+            display: "flex",
+            alignItems: "center",
+            gap: "8px",
           }}
         >
-          🔐 SecureExam
+          <Lock size={20} /> SecureExam
         </div>
 
         {/* Role */}
@@ -116,10 +134,12 @@ function StudentDashboard() {
               borderRadius: "8px",
               fontSize: "14px",
               fontWeight: "600",
-              display: "block",
+              display: "flex",
+              alignItems: "center",
+              gap: "10px",
             }}
           >
-            🏠 Dashboard
+            <LayoutDashboard size={16} /> Dashboard
           </Link>
 
           {/* My Examinations */}
@@ -131,10 +151,12 @@ function StudentDashboard() {
               padding: "12px 14px",
               borderRadius: "8px",
               fontSize: "14px",
-              display: "block",
+              display: "flex",
+              alignItems: "center",
+              gap: "10px",
             }}
           >
-            📝 My Examinations
+            <FileText size={16} /> My Examinations
           </Link>
 
           {/* Results */}
@@ -144,9 +166,12 @@ function StudentDashboard() {
               borderRadius: "8px",
               fontSize: "14px",
               color: "#d1d5db",
+              display: "flex",
+              alignItems: "center",
+              gap: "10px",
             }}
           >
-            📄 Results
+            <ClipboardCheck size={16} /> Results
           </div>
 
           {/* Profile */}
@@ -156,9 +181,12 @@ function StudentDashboard() {
               borderRadius: "8px",
               fontSize: "14px",
               color: "#d1d5db",
+              display: "flex",
+              alignItems: "center",
+              gap: "10px",
             }}
           >
-            👤 Profile
+            <User size={16} /> Profile
           </div>
 
           {/* Settings */}
@@ -168,9 +196,12 @@ function StudentDashboard() {
               borderRadius: "8px",
               fontSize: "14px",
               color: "#d1d5db",
+              display: "flex",
+              alignItems: "center",
+              gap: "10px",
             }}
           >
-            ⚙️ Settings
+            <Settings size={16} /> Settings
           </div>
         </nav>
 
@@ -190,10 +221,12 @@ function StudentDashboard() {
                 color: "#fca5a5",
                 fontSize: "14px",
                 padding: "10px",
-                display: "block",
+                display: "flex",
+                alignItems: "center",
+                gap: "10px",
               }}
             >
-              🚪 Logout
+              <LogOut size={16} /> Logout
             </Link>
           </div>
         </div>
@@ -320,9 +353,12 @@ function StudentDashboard() {
                 margin: "0 0 8px",
                 fontSize: "27px",
                 color: "#111827",
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
               }}
             >
-              Welcome back, Student! 👋
+              Welcome back, Student! <Sparkles size={22} color="#f59e0b" />
             </h1>
 
             <p
@@ -361,7 +397,7 @@ function StudentDashboard() {
                   marginBottom: "12px",
                 }}
               >
-                📝
+                <FileText size={26} color="#2563eb" />
               </div>
 
               <div
@@ -400,7 +436,7 @@ function StudentDashboard() {
                   marginBottom: "12px",
                 }}
               >
-                ✅
+                <CheckCircle2 size={26} color="#16a34a" />
               </div>
 
               <div
@@ -439,7 +475,7 @@ function StudentDashboard() {
                   marginBottom: "12px",
                 }}
               >
-                🏆
+                <Trophy size={26} color="#f59e0b" />
               </div>
 
               <div
@@ -478,7 +514,7 @@ function StudentDashboard() {
                   marginBottom: "12px",
                 }}
               >
-                📊
+                <BarChart2 size={26} color="#8b5cf6" />
               </div>
 
               <div
@@ -666,7 +702,7 @@ function StudentDashboard() {
                     fontSize: "13px",
                   }}
                 >
-                  <span>🔐 Secure Authentication</span>
+                  <span style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}><Lock size={15} /> Secure Authentication</span>
 
                   <span
                     style={{
@@ -685,7 +721,7 @@ function StudentDashboard() {
                     fontSize: "13px",
                   }}
                 >
-                  <span>⛓️ Blockchain Verification</span>
+                  <span style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}><Link2 size={15} /> Blockchain Verification</span>
 
                   <span
                     style={{
@@ -704,7 +740,7 @@ function StudentDashboard() {
                     fontSize: "13px",
                   }}
                 >
-                  <span>🛡️ Question Protection</span>
+                  <span style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}><ShieldCheck size={15} /> Question Protection</span>
 
                   <span
                     style={{

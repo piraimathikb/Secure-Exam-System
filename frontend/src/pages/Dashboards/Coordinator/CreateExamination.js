@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { ShieldCheck } from "lucide-react";
 
 function CreateExamination() {
   const navigate = useNavigate();
@@ -338,9 +339,12 @@ function CreateExamination() {
                   margin: "0 0 12px",
                   color: "#111827",
                   fontSize: "15px",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "8px",
                 }}
               >
-                🔐 Security Configuration
+                <ShieldCheck size={18} /> Security Configuration
               </h3>
 
               <div

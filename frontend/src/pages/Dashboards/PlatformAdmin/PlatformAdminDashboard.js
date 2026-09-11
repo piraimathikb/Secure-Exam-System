@@ -1,3 +1,21 @@
+import {
+  Lock,
+  LayoutDashboard,
+  Building2,
+  Users,
+  GraduationCap,
+  FileText,
+  ShieldCheck,
+  BarChart2,
+  Settings,
+  LogOut,
+  Bell,
+  UserPlus,
+  FilePlus,
+  Link2,
+  Cloud,
+} from "lucide-react";
+
 function PlatformAdminDashboard() {
   return (
     <div className="admin-dashboard">
@@ -5,8 +23,8 @@ function PlatformAdminDashboard() {
       {/* Sidebar */}
       <aside className="admin-sidebar">
 
-        <div className="admin-logo">
-          🔐 SecureExam
+        <div className="admin-logo" style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+          <Lock size={20} /> SecureExam
         </div>
 
         <div className="admin-role">
@@ -16,42 +34,42 @@ function PlatformAdminDashboard() {
         <nav className="admin-nav">
 
           <a href="#dashboard" className="active">
-            <span>▦</span>
+            <span><LayoutDashboard size={18} /></span>
             Dashboard
           </a>
 
           <a href="#colleges">
-            <span>🏫</span>
+            <span><Building2 size={18} /></span>
             Colleges
           </a>
 
           <a href="#coordinators">
-            <span>👥</span>
+            <span><Users size={18} /></span>
             Coordinators
           </a>
 
           <a href="#students">
-            <span>🎓</span>
+            <span><GraduationCap size={18} /></span>
             Students
           </a>
 
           <a href="#examinations">
-            <span>📝</span>
+            <span><FileText size={18} /></span>
             Examinations
           </a>
 
           <a href="#security">
-            <span>🛡️</span>
+            <span><ShieldCheck size={18} /></span>
             Security
           </a>
 
           <a href="#reports">
-            <span>📊</span>
+            <span><BarChart2 size={18} /></span>
             Reports
           </a>
 
           <a href="#settings">
-            <span>⚙️</span>
+            <span><Settings size={18} /></span>
             Settings
           </a>
 
@@ -59,7 +77,7 @@ function PlatformAdminDashboard() {
 
         <div className="admin-logout">
           <a href="/">
-            <span>↪</span>
+            <span><LogOut size={18} /></span>
             Logout
           </a>
         </div>
@@ -80,7 +98,7 @@ function PlatformAdminDashboard() {
           <div className="admin-profile">
 
             <div className="notification">
-              🔔
+              <Bell size={18} />
             </div>
 
             <div className="profile-avatar">
@@ -123,7 +141,7 @@ function PlatformAdminDashboard() {
           <div className="stat-card">
 
             <div className="stat-icon">
-              🏫
+              <Building2 size={22} color="#2563eb" />
             </div>
 
             <div>
@@ -139,7 +157,7 @@ function PlatformAdminDashboard() {
           <div className="stat-card">
 
             <div className="stat-icon">
-              👥
+              <Users size={22} color="#2563eb" />
             </div>
 
             <div>
@@ -155,7 +173,7 @@ function PlatformAdminDashboard() {
           <div className="stat-card">
 
             <div className="stat-icon">
-              🎓
+              <GraduationCap size={22} color="#2563eb" />
             </div>
 
             <div>
@@ -171,7 +189,7 @@ function PlatformAdminDashboard() {
           <div className="stat-card">
 
             <div className="stat-icon">
-              📝
+              <FileText size={22} color="#2563eb" />
             </div>
 
             <div>
@@ -208,7 +226,7 @@ function PlatformAdminDashboard() {
               <div className="activity-item">
 
                 <div className="activity-icon">
-                  🏫
+                  <Building2 size={18} color="#2563eb" />
                 </div>
 
                 <div>
@@ -222,7 +240,7 @@ function PlatformAdminDashboard() {
               <div className="activity-item">
 
                 <div className="activity-icon">
-                  👤
+                  <UserPlus size={18} color="#2563eb" />
                 </div>
 
                 <div>
@@ -236,7 +254,7 @@ function PlatformAdminDashboard() {
               <div className="activity-item">
 
                 <div className="activity-icon">
-                  📝
+                  <FilePlus size={18} color="#2563eb" />
                 </div>
 
                 <div>
@@ -250,7 +268,7 @@ function PlatformAdminDashboard() {
               <div className="activity-item">
 
                 <div className="activity-icon">
-                  🎓
+                  <GraduationCap size={18} color="#2563eb" />
                 </div>
 
                 <div>
@@ -285,7 +303,7 @@ function PlatformAdminDashboard() {
 
               <div className="service-item">
                 <div>
-                  <span className="service-icon">⛓️</span>
+                  <span className="service-icon"><Link2 size={18} /></span>
                   <strong>Blockchain</strong>
                 </div>
 
@@ -296,7 +314,7 @@ function PlatformAdminDashboard() {
 
               <div className="service-item">
                 <div>
-                  <span className="service-icon">☁️</span>
+                  <span className="service-icon"><Cloud size={18} /></span>
                   <strong>IPFS Storage</strong>
                 </div>
 
@@ -307,7 +325,7 @@ function PlatformAdminDashboard() {
 
               <div className="service-item">
                 <div>
-                  <span className="service-icon">🔐</span>
+                  <span className="service-icon"><Lock size={18} /></span>
                   <strong>Encryption</strong>
                 </div>
 
@@ -318,7 +336,7 @@ function PlatformAdminDashboard() {
 
               <div className="service-item">
                 <div>
-                  <span className="service-icon">🛡️</span>
+                  <span className="service-icon"><ShieldCheck size={18} /></span>
                   <strong>Key Management</strong>
                 </div>
 
@@ -348,22 +366,22 @@ function PlatformAdminDashboard() {
           <div className="quick-actions">
 
             <button>
-              <span>🏫</span>
+              <span><Building2 size={16} /></span>
               Add College
             </button>
 
             <button>
-              <span>👤</span>
+              <span><UserPlus size={16} /></span>
               Add Coordinator
             </button>
 
             <button>
-              <span>🎓</span>
+              <span><GraduationCap size={16} /></span>
               Manage Students
             </button>
 
             <button>
-              <span>📊</span>
+              <span><BarChart2 size={16} /></span>
               View Reports
             </button>
 

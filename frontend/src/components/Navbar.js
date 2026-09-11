@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
+import { Lock } from "lucide-react";
+
 function Navbar() {
   return (
     <nav className="navbar">
-      <div className="logo">
-        🔐 SecureExam
+      <div className="logo" style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+        <Lock size={22} />
+        <span>SecureExam</span>
       </div>
 
       <div className="nav-links">
