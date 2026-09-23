@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { Clock, ShieldCheck, FileText } from "lucide-react";
 
 function TakeExam() {
   const location = useLocation();
@@ -242,9 +243,13 @@ function TakeExam() {
             borderRadius: "8px",
             fontWeight: "700",
             fontSize: "18px",
+            display: "flex",
+            alignItems: "center",
+            gap: "8px",
           }}
         >
-          ⏱ {formatTime()}
+          <Clock size={20} />
+          <span>{formatTime()}</span>
         </div>
       </div>
 
@@ -256,10 +261,15 @@ function TakeExam() {
           padding: "9px 35px",
           color: "#047857",
           fontSize: "12px",
+          display: "flex",
+          alignItems: "center",
+          gap: "8px",
         }}
       >
-        🔐 Secure Examination Mode • Your activity is being monitored for
-        examination integrity.
+        <ShieldCheck size={16} />
+        <span>
+          Secure Examination Mode • Your activity is being monitored for examination integrity.
+        </span>
       </div>
 
       {/* Main Layout */}
@@ -620,11 +630,12 @@ function TakeExam() {
           >
             <div
               style={{
-                fontSize: "40px",
+                display: "flex",
+                justifyContent: "center",
                 marginBottom: "15px",
               }}
             >
-              📝
+              <FileText size={42} color="#2563eb" />
             </div>
 
             <h2

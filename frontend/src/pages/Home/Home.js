@@ -1,4 +1,16 @@
 import Navbar from "../../components/Navbar";
+import {
+  Lock,
+  Link2,
+  Cloud,
+  ShieldCheck,
+  FileText,
+  CheckCircle,
+  Crown,
+  Building2,
+  GraduationCap,
+  User,
+} from "lucide-react";
 
 function Home() {
   return (
@@ -33,7 +45,9 @@ function Home() {
 
         <div className="hero-visual">
           <div className="security-card">
-            <div className="security-icon">🔐</div>
+            <div className="security-icon">
+              <Lock size={40} color="#2563eb" />
+            </div>
 
             <h3>Exam Security</h3>
 
@@ -64,7 +78,9 @@ function Home() {
 
         <div className="features-grid">
           <div className="feature-card">
-            <div className="feature-icon">🔐</div>
+            <div className="feature-icon">
+              <Lock size={32} color="#2563eb" />
+            </div>
             <h3>Secure Question Papers</h3>
             <p>
               Protect examination papers using encryption and controlled
@@ -73,7 +89,9 @@ function Home() {
           </div>
 
           <div className="feature-card">
-            <div className="feature-icon">⛓️</div>
+            <div className="feature-icon">
+              <Link2 size={32} color="#2563eb" />
+            </div>
             <h3>Blockchain Verification</h3>
             <p>
               Verify the integrity of examination documents using blockchain
@@ -82,7 +100,9 @@ function Home() {
           </div>
 
           <div className="feature-card">
-            <div className="feature-icon">☁️</div>
+            <div className="feature-icon">
+              <Cloud size={32} color="#2563eb" />
+            </div>
             <h3>Decentralized Storage</h3>
             <p>
               Store protected examination documents using decentralized
@@ -91,7 +111,9 @@ function Home() {
           </div>
 
           <div className="feature-card">
-            <div className="feature-icon">🛡️</div>
+            <div className="feature-icon">
+              <ShieldCheck size={32} color="#2563eb" />
+            </div>
             <h3>Secure Key Management</h3>
             <p>
               Protect sensitive encryption keys with dedicated secret
@@ -190,15 +212,25 @@ function Home() {
         </div>
 
         <div className="architecture-card">
-          <div>📄 Question Paper</div>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "8px" }}>
+            <FileText size={16} /> Question Paper
+          </div>
           <span>↓</span>
-          <div>🔐 Encryption</div>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "8px" }}>
+            <Lock size={16} /> Encryption
+          </div>
           <span>↓</span>
-          <div>☁️ IPFS Storage</div>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "8px" }}>
+            <Cloud size={16} /> IPFS Storage
+          </div>
           <span>↓</span>
-          <div>⛓️ Blockchain Verification</div>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "8px" }}>
+            <Link2 size={16} /> Blockchain Verification
+          </div>
           <span>↓</span>
-          <div>✅ Secure Examination</div>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "8px" }}>
+            <CheckCircle size={16} /> Secure Examination
+          </div>
         </div>
       </section>
 
@@ -217,25 +249,25 @@ function Home() {
 
         <div className="roles-grid">
           <div className="role-card">
-            <span>👑</span>
+            <span><Crown size={36} color="#eab308" style={{ display: "inline-block" }} /></span>
             <h3>Platform Admin</h3>
             <p>Manage organizations and monitor the entire platform.</p>
           </div>
 
           <div className="role-card">
-            <span>🏫</span>
+            <span><Building2 size={36} color="#3b82f6" style={{ display: "inline-block" }} /></span>
             <h3>College Admin</h3>
             <p>Manage teachers, students, examinations, and results.</p>
           </div>
 
           <div className="role-card">
-            <span>👨‍🏫</span>
+            <span><GraduationCap size={36} color="#10b981" style={{ display: "inline-block" }} /></span>
             <h3>Teacher</h3>
             <p>Create examinations and securely manage question papers.</p>
           </div>
 
           <div className="role-card">
-            <span>👨‍🎓</span>
+            <span><User size={36} color="#8b5cf6" style={{ display: "inline-block" }} /></span>
             <h3>Student</h3>
             <p>Attend examinations and securely access results.</p>
           </div>
@@ -257,7 +289,9 @@ function Home() {
       {/* Footer */}
       <footer className="footer">
         <div>
-          <h3>🔐 SecureExam</h3>
+          <h3 style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+            <Lock size={20} /> SecureExam
+          </h3>
           <p>
             Blockchain-based secure online examination platform.
           </p>

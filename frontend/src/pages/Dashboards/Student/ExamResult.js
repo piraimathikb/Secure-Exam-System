@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
+import { PartyPopper, ClipboardCheck, ShieldCheck } from "lucide-react";
 
 function ExamResult() {
   const location = useLocation();
@@ -97,11 +98,12 @@ function ExamResult() {
         >
           <div
             style={{
-              fontSize: "48px",
+              display: "flex",
+              justifyContent: "center",
               marginBottom: "10px",
             }}
           >
-            {passed ? "🎉" : "📋"}
+            {passed ? <PartyPopper size={48} color="#22c55e" /> : <ClipboardCheck size={48} color="#3b82f6" />}
           </div>
 
           <h1
@@ -295,9 +297,12 @@ function ExamResult() {
               margin: "0 0 8px",
               color: "#065f46",
               fontSize: "16px",
+              display: "flex",
+              alignItems: "center",
+              gap: "8px",
             }}
           >
-            🔐 Examination Integrity Verified
+            <ShieldCheck size={18} /> Examination Integrity Verified
           </h3>
 
           <p

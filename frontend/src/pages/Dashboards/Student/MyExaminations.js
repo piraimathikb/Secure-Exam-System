@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { Calendar, Clock, Timer, FileQuestion, ShieldCheck } from "lucide-react";
 
 function MyExaminations() {
   const navigate = useNavigate();
@@ -196,8 +197,8 @@ function MyExaminations() {
                     marginBottom: "12px",
                   }}
                 >
-                  <span style={{ color: "#6b7280", fontSize: "13px" }}>
-                    📅 Date
+                  <span style={{ color: "#6b7280", fontSize: "13px", display: "inline-flex", alignItems: "center", gap: "6px" }}>
+                    <Calendar size={14} /> Date
                   </span>
 
                   <strong
@@ -217,8 +218,8 @@ function MyExaminations() {
                     marginBottom: "12px",
                   }}
                 >
-                  <span style={{ color: "#6b7280", fontSize: "13px" }}>
-                    🕐 Time
+                  <span style={{ color: "#6b7280", fontSize: "13px", display: "inline-flex", alignItems: "center", gap: "6px" }}>
+                    <Clock size={14} /> Time
                   </span>
 
                   <strong
@@ -238,8 +239,8 @@ function MyExaminations() {
                     marginBottom: "12px",
                   }}
                 >
-                  <span style={{ color: "#6b7280", fontSize: "13px" }}>
-                    ⏱ Duration
+                  <span style={{ color: "#6b7280", fontSize: "13px", display: "inline-flex", alignItems: "center", gap: "6px" }}>
+                    <Timer size={14} /> Duration
                   </span>
 
                   <strong
@@ -259,8 +260,8 @@ function MyExaminations() {
                     marginBottom: "20px",
                   }}
                 >
-                  <span style={{ color: "#6b7280", fontSize: "13px" }}>
-                    📝 Questions
+                  <span style={{ color: "#6b7280", fontSize: "13px", display: "inline-flex", alignItems: "center", gap: "6px" }}>
+                    <FileQuestion size={14} /> Questions
                   </span>
 
                   <strong
@@ -310,9 +311,12 @@ function MyExaminations() {
               margin: "0 0 18px",
               color: "#111827",
               fontSize: "18px",
+              display: "flex",
+              alignItems: "center",
+              gap: "8px",
             }}
           >
-            🔐 Examination Security
+            <ShieldCheck size={20} /> Examination Security
           </h2>
 
           <div

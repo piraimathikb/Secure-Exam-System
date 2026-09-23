@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { ShieldCheck } from "lucide-react";
 
 function ExamInstructions() {
   const location = useLocation();
@@ -263,9 +264,12 @@ function ExamInstructions() {
               margin: "0 0 8px",
               color: "#065f46",
               fontSize: "16px",
+              display: "flex",
+              alignItems: "center",
+              gap: "8px",
             }}
           >
-            🔐 Secure Examination Environment
+            <ShieldCheck size={18} /> Secure Examination Environment
           </h3>
 
           <p

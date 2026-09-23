@@ -1,4 +1,21 @@
 import { Link } from "react-router-dom";
+import {
+  Lock,
+  LayoutDashboard,
+  FileText,
+  ClipboardList,
+  GraduationCap,
+  Inbox,
+  BarChart2,
+  ShieldCheck,
+  Settings,
+  LogOut,
+  Bell,
+  Link2,
+  Cloud,
+  Upload,
+  FilePlus,
+} from "lucide-react";
 
 function CoordinatorDashboard() {
   return (
@@ -7,8 +24,8 @@ function CoordinatorDashboard() {
       {/* Sidebar */}
       <aside className="coordinator-sidebar">
 
-        <div className="coordinator-logo">
-          🔐 SecureExam
+        <div className="coordinator-logo" style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+          <Lock size={20} /> SecureExam
         </div>
 
         <div className="coordinator-role">
@@ -18,42 +35,42 @@ function CoordinatorDashboard() {
         <nav className="coordinator-nav">
 
           <a href="#dashboard" className="active">
-            <span>▦</span>
+            <span><LayoutDashboard size={18} /></span>
             Dashboard
           </a>
 
           <a href="#question-papers">
-            <span>📄</span>
+            <span><FileText size={18} /></span>
             Question Papers
           </a>
 
           <a href="#examinations">
-            <span>📝</span>
+            <span><ClipboardList size={18} /></span>
             Examinations
           </a>
 
           <a href="#students">
-            <span>🎓</span>
+            <span><GraduationCap size={18} /></span>
             Students
           </a>
 
           <a href="#submissions">
-            <span>📥</span>
+            <span><Inbox size={18} /></span>
             Submissions
           </a>
 
           <a href="#results">
-            <span>📊</span>
+            <span><BarChart2 size={18} /></span>
             Results
           </a>
 
           <a href="#security">
-            <span>🛡️</span>
+            <span><ShieldCheck size={18} /></span>
             Security
           </a>
 
           <a href="#settings">
-            <span>⚙️</span>
+            <span><Settings size={18} /></span>
             Settings
           </a>
 
@@ -61,7 +78,7 @@ function CoordinatorDashboard() {
 
         <div className="coordinator-logout">
           <Link to="/">
-            <span>↪</span>
+            <span><LogOut size={18} /></span>
             Logout
           </Link>
         </div>
@@ -82,7 +99,7 @@ function CoordinatorDashboard() {
           <div className="coordinator-profile">
 
             <div className="coordinator-notification">
-              🔔
+              <Bell size={18} />
             </div>
 
             <div className="coordinator-avatar">
@@ -130,7 +147,7 @@ function CoordinatorDashboard() {
           <div className="coordinator-stat-card">
 
             <div className="coordinator-stat-icon">
-              📝
+              <ClipboardList size={22} color="#2563eb" />
             </div>
 
             <div>
@@ -144,7 +161,7 @@ function CoordinatorDashboard() {
           <div className="coordinator-stat-card">
 
             <div className="coordinator-stat-icon">
-              📄
+              <FileText size={22} color="#2563eb" />
             </div>
 
             <div>
@@ -158,7 +175,7 @@ function CoordinatorDashboard() {
           <div className="coordinator-stat-card">
 
             <div className="coordinator-stat-icon">
-              🎓
+              <GraduationCap size={22} color="#2563eb" />
             </div>
 
             <div>
@@ -172,7 +189,7 @@ function CoordinatorDashboard() {
           <div className="coordinator-stat-card">
 
             <div className="coordinator-stat-icon">
-              📥
+              <Inbox size={22} color="#2563eb" />
             </div>
 
             <div>
@@ -283,7 +300,7 @@ function CoordinatorDashboard() {
               <div className="coordinator-security-item">
 
                 <div>
-                  <span>🔐</span>
+                  <span><Lock size={18} /></span>
                   <strong>Encryption</strong>
                 </div>
 
@@ -296,7 +313,7 @@ function CoordinatorDashboard() {
               <div className="coordinator-security-item">
 
                 <div>
-                  <span>⛓️</span>
+                  <span><Link2 size={18} /></span>
                   <strong>Blockchain</strong>
                 </div>
 
@@ -309,7 +326,7 @@ function CoordinatorDashboard() {
               <div className="coordinator-security-item">
 
                 <div>
-                  <span>☁️</span>
+                  <span><Cloud size={18} /></span>
                   <strong>IPFS Storage</strong>
                 </div>
 
@@ -322,7 +339,7 @@ function CoordinatorDashboard() {
               <div className="coordinator-security-item">
 
                 <div>
-                  <span>🛡️</span>
+                  <span><ShieldCheck size={18} /></span>
                   <strong>Integrity</strong>
                 </div>
 
@@ -353,7 +370,7 @@ function CoordinatorDashboard() {
           <div className="coordinator-quick-actions">
 
             <button>
-              <span>📄</span>
+              <span><Upload size={16} /></span>
               Upload Question Paper
             </button>
 
@@ -365,18 +382,18 @@ function CoordinatorDashboard() {
               }}
             >
               <button>
-                <span>📝</span>
+                <span><FilePlus size={16} /></span>
                 Create Examination
               </button>
             </Link>
 
             <button>
-              <span>🎓</span>
+              <span><GraduationCap size={16} /></span>
               View Students
             </button>
 
             <button>
-              <span>📊</span>
+              <span><BarChart2 size={16} /></span>
               View Results
             </button>
 

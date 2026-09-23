@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Lock, Cloud, Link2, Cpu, ShieldCheck, AlertTriangle } from "lucide-react";
 
 function PublishExamination() {
   const location = useLocation();
@@ -25,22 +26,22 @@ function PublishExamination() {
     {
       title: "Question Paper Encryption",
       description: "Encrypting examination data using AES-256",
-      icon: "🔐",
+      icon: <Lock size={18} />,
     },
     {
       title: "IPFS Storage",
       description: "Storing encrypted question paper securely",
-      icon: "☁️",
+      icon: <Cloud size={18} />,
     },
     {
       title: "CID Generation",
       description: "Generating content identifier for the stored paper",
-      icon: "🔗",
+      icon: <Link2 size={18} />,
     },
     {
       title: "Blockchain Verification",
       description: "Recording integrity information on Polygon blockchain",
-      icon: "⛓️",
+      icon: <Cpu size={18} />,
     },
   ];
 
@@ -239,9 +240,12 @@ function PublishExamination() {
                   margin: "0 0 15px",
                   color: "#111827",
                   fontSize: "16px",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "8px",
                 }}
               >
-                🔐 Security Verification
+                <ShieldCheck size={18} /> Security Verification
               </h3>
 
               <div style={{ display: "grid", gap: "12px" }}>
@@ -565,7 +569,8 @@ function PublishExamination() {
                 lineHeight: "1.6",
               }}
             >
-              ⚠️ <strong>Important:</strong> Once published, the
+              <AlertTriangle size={15} style={{ display: "inline-block", verticalAlign: "-2px", marginRight: "6px" }} />
+              <strong>Important:</strong> Once published, the
               examination should not be modified. The published
               question paper will be associated with its security
               record and integrity verification.
@@ -622,9 +627,13 @@ function PublishExamination() {
                   cursor: publishing ? "not-allowed" : "pointer",
                 }}
               >
-                {publishing
-                  ? "Securing Examination..."
-                  : "🔐 Publish Examination"}
+                {publishing ? (
+                  "Securing Examination..."
+                ) : (
+                  <span style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}>
+                    <Lock size={15} /> Publish Examination
+                  </span>
+                )}
               </button>
             </div>
           </>
