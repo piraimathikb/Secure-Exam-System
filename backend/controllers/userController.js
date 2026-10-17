@@ -42,14 +42,39 @@ const createUser = async (req, res) => {
       });
     }
 
-    if (password.length < 6 || !validRoles.includes(role)) {
+    if (
+      typeof name !== "string" ||
+      typeof email !== "string" ||
+      typeof password !== "string" ||
+      typeof role !== "string"
+    ) {
       return res.status(400).json({
         success: false,
-        message: "Invalid role or password must be at least 6 characters",
+        message: "Invalid input data",
+      });
+    }
+
+    if (
+      password.length < 6 ||
+      !validRoles.includes(role)
+    ) {
+      return res.status(400).json({
+        success: false,
+        message:
+          "Invalid role or password must be at least 6 characters",
       });
     }
 
     const normalizedEmail = email.trim().toLowerCase();
+
+    if (
+      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(normalizedEmail)
+    ) {
+      return res.status(400).json({
+        success: false,
+        message: "Enter a valid email address",
+      });
+    }
 
     if (await User.findOne({ email: normalizedEmail })) {
       return res.status(409).json({
@@ -94,6 +119,7 @@ const createUser = async (req, res) => {
 const updateUser = async (req, res) => {
   try {
     const { name, email, role, isActive } = req.body;
+
     const user = await User.findById(req.params.id);
 
     if (!user) {
@@ -124,24 +150,37 @@ const updateUser = async (req, res) => {
       });
     }
 
-    if (role !== undefined && !validRoles.includes(role)) {
+    if (
+      role !== undefined &&
+      (typeof role !== "string" || !validRoles.includes(role))
+    ) {
       return res.status(400).json({
         success: false,
         message: "Invalid user role",
       });
     }
 
-    if (isActive !== undefined && typeof isActive !== "boolean") {
+    if (
+      isActive !== undefined &&
+      typeof isActive !== "boolean"
+    ) {
       return res.status(400).json({
         success: false,
         message: "Invalid account status",
       });
     }
 
-    if (
-      isActive === false &&
-      String(user._id) === String(req.user.userId)
-    ) {
+    const isOwnAccount =
+      String(user._id) === String(req.user.userId);
+
+    if (isOwnAccount && role !== undefined && role !== user.role) {
+      return res.status(400).json({
+        success: false,
+        message: "You cannot change your own role",
+      });
+    }
+
+    if (isOwnAccount && isActive === false) {
       return res.status(400).json({
         success: false,
         message: "You cannot deactivate your own account",
@@ -150,6 +189,7 @@ const updateUser = async (req, res) => {
 
     if (email !== undefined) {
       const normalizedEmail = email.trim().toLowerCase();
+
       const existingUser = await User.findOne({
         email: normalizedEmail,
         _id: { $ne: user._id },
@@ -165,9 +205,17 @@ const updateUser = async (req, res) => {
       user.email = normalizedEmail;
     }
 
-    if (name !== undefined) user.name = name.trim();
-    if (role !== undefined) user.role = role;
-    if (isActive !== undefined) user.isActive = isActive;
+    if (name !== undefined) {
+      user.name = name.trim();
+    }
+
+    if (role !== undefined) {
+      user.role = role;
+    }
+
+    if (isActive !== undefined) {
+      user.isActive = isActive;
+    }
 
     await user.save();
 
