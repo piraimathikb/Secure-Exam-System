@@ -1,5 +1,13 @@
+
 const bcrypt = require("bcryptjs");
 const User = require("../models/User");
+
+const validRoles = [
+  "platformAdmin",
+  "collegeAdmin",
+  "coordinator",
+  "student",
+];
 
 const getUsers = async (req, res) => {
   try {
@@ -14,7 +22,6 @@ const getUsers = async (req, res) => {
     res.status(500).json({
       success: false,
       message: "Failed to fetch users",
-      error: error.message,
     });
   }
 };
@@ -23,30 +30,38 @@ const createUser = async (req, res) => {
   try {
     const { name, email, password, role } = req.body;
 
-    if (!name || !email || !password || !role) {
+    if (
+      !name?.trim() ||
+      !email?.trim() ||
+      !password ||
+      !role
+    ) {
       return res.status(400).json({
         success: false,
         message: "All fields are required",
       });
     }
 
-    const existingUser = await User.findOne({
-      email: email.toLowerCase(),
-    });
-
-    if (existingUser) {
-      return res.status(409).json({
+    if (password.length < 6 || !validRoles.includes(role)) {
+      return res.status(400).json({
         success: false,
-        message: "User already exists",
+        message: "Invalid role or password must be at least 6 characters",
       });
     }
 
-    const hashedPassword = await bcrypt.hash(password, 12);
+    const normalizedEmail = email.trim().toLowerCase();
+
+    if (await User.findOne({ email: normalizedEmail })) {
+      return res.status(409).json({
+        success: false,
+        message: "Email is already registered",
+      });
+    }
 
     const user = await User.create({
-      name,
-      email: email.toLowerCase(),
-      password: hashedPassword,
+      name: name.trim(),
+      email: normalizedEmail,
+      password: await bcrypt.hash(password, 12),
       role,
     });
 
@@ -62,10 +77,16 @@ const createUser = async (req, res) => {
       },
     });
   } catch (error) {
+    if (error.code === 11000) {
+      return res.status(409).json({
+        success: false,
+        message: "Email is already registered",
+      });
+    }
+
     res.status(500).json({
       success: false,
       message: "Failed to create user",
-      error: error.message,
     });
   }
 };
@@ -73,7 +94,6 @@ const createUser = async (req, res) => {
 const updateUser = async (req, res) => {
   try {
     const { name, email, role, isActive } = req.body;
-
     const user = await User.findById(req.params.id);
 
     if (!user) {
@@ -83,8 +103,69 @@ const updateUser = async (req, res) => {
       });
     }
 
-    if (name !== undefined) user.name = name;
-    if (email !== undefined) user.email = email.toLowerCase();
+    if (
+      name !== undefined &&
+      (typeof name !== "string" || !name.trim())
+    ) {
+      return res.status(400).json({
+        success: false,
+        message: "Name cannot be empty",
+      });
+    }
+
+    if (
+      email !== undefined &&
+      (typeof email !== "string" ||
+        !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim()))
+    ) {
+      return res.status(400).json({
+        success: false,
+        message: "Enter a valid email address",
+      });
+    }
+
+    if (role !== undefined && !validRoles.includes(role)) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid user role",
+      });
+    }
+
+    if (isActive !== undefined && typeof isActive !== "boolean") {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid account status",
+      });
+    }
+
+    if (
+      isActive === false &&
+      String(user._id) === String(req.user.userId)
+    ) {
+      return res.status(400).json({
+        success: false,
+        message: "You cannot deactivate your own account",
+      });
+    }
+
+    if (email !== undefined) {
+      const normalizedEmail = email.trim().toLowerCase();
+      const existingUser = await User.findOne({
+        email: normalizedEmail,
+        _id: { $ne: user._id },
+      });
+
+      if (existingUser) {
+        return res.status(409).json({
+          success: false,
+          message: "Email is already registered",
+        });
+      }
+
+      user.email = normalizedEmail;
+    }
+
+    if (name !== undefined) user.name = name.trim();
     if (role !== undefined) user.role = role;
     if (isActive !== undefined) user.isActive = isActive;
 
@@ -102,16 +183,18 @@ const updateUser = async (req, res) => {
       },
     });
   } catch (error) {
+    if (error.code === 11000) {
+      return res.status(409).json({
+        success: false,
+        message: "Email is already registered",
+      });
+    }
+
     res.status(500).json({
       success: false,
       message: "Failed to update user",
-      error: error.message,
     });
   }
 };
 
-module.exports = {
-  getUsers,
-  createUser,
-  updateUser,
-};
+module.exports = { getUsers, createUser, updateUser };

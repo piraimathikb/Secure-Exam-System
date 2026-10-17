@@ -17,6 +17,7 @@ import MyExaminations from "./pages/Dashboards/Student/MyExaminations";
 import ExamInstructions from "./pages/Dashboards/Student/ExamInstructions";
 import TakeExam from "./pages/Dashboards/Student/TakeExam";
 import ExamResult from "./pages/Dashboards/Student/ExamResult";
+import ManageUsers from "./pages/Dashboards/PlatformAdmin/ManageUsers";
 
 function App() {
   return (
@@ -33,6 +34,12 @@ function App() {
         <Route
           path="/platform-admin"
           element={<PlatformAdminDashboard />}
+        />
+
+        {/* Manage Users */}
+        <Route
+          path="/platform-admin/users"
+          element={<ManageUsers />}
         />
 
         {/* Organization Admin */}
