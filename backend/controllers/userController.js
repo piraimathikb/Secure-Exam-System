@@ -9,17 +9,20 @@ const validRoles = [
   "student",
 ];
 
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 const getUsers = async (req, res) => {
   try {
     const users = await User.find().select("-password");
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       count: users.length,
       users,
     });
   } catch (error) {
-    res.status(500).json({
+    console.error("Get users error:", error.message);
+    return res.status(500).json({
       success: false,
       message: "Failed to fetch users",
     });
@@ -28,55 +31,44 @@ const getUsers = async (req, res) => {
 
 const createUser = async (req, res) => {
   try {
-    const { name, email, password, role } = req.body;
-
-    if (
-      !name?.trim() ||
-      !email?.trim() ||
-      !password ||
-      !role
-    ) {
-      return res.status(400).json({
-        success: false,
-        message: "All fields are required",
-      });
-    }
+    const { name, email, password, role } = req.body || {};
 
     if (
       typeof name !== "string" ||
       typeof email !== "string" ||
       typeof password !== "string" ||
-      typeof role !== "string"
+      typeof role !== "string" ||
+      !name.trim() ||
+      !email.trim() ||
+      !password
     ) {
       return res.status(400).json({
         success: false,
-        message: "Invalid input data",
+        message: "All fields are required and must be valid",
       });
     }
 
-    if (
-      password.length < 6 ||
-      !validRoles.includes(role)
-    ) {
+    if (!validRoles.includes(role) || password.length < 6) {
       return res.status(400).json({
         success: false,
-        message:
-          "Invalid role or password must be at least 6 characters",
+        message: "Invalid role or password must be at least 6 characters",
       });
     }
 
     const normalizedEmail = email.trim().toLowerCase();
 
-    if (
-      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(normalizedEmail)
-    ) {
+    if (!emailRegex.test(normalizedEmail)) {
       return res.status(400).json({
         success: false,
         message: "Enter a valid email address",
       });
     }
 
-    if (await User.findOne({ email: normalizedEmail })) {
+    const existingUser = await User.findOne({
+      email: normalizedEmail,
+    });
+
+    if (existingUser) {
       return res.status(409).json({
         success: false,
         message: "Email is already registered",
@@ -90,7 +82,7 @@ const createUser = async (req, res) => {
       role,
     });
 
-    res.status(201).json({
+    return res.status(201).json({
       success: true,
       message: "User created successfully",
       user: {
@@ -102,6 +94,8 @@ const createUser = async (req, res) => {
       },
     });
   } catch (error) {
+    console.error("Create user error:", error.message);
+
     if (error.code === 11000) {
       return res.status(409).json({
         success: false,
@@ -109,7 +103,7 @@ const createUser = async (req, res) => {
       });
     }
 
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message: "Failed to create user",
     });
@@ -118,7 +112,7 @@ const createUser = async (req, res) => {
 
 const updateUser = async (req, res) => {
   try {
-    const { name, email, role, isActive } = req.body;
+    const { name, email, role, isActive } = req.body || {};
 
     const user = await User.findById(req.params.id);
 
@@ -142,7 +136,7 @@ const updateUser = async (req, res) => {
     if (
       email !== undefined &&
       (typeof email !== "string" ||
-        !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim()))
+        !emailRegex.test(email.trim()))
     ) {
       return res.status(400).json({
         success: false,
@@ -187,6 +181,27 @@ const updateUser = async (req, res) => {
       });
     }
 
+    const removesActivePlatformAdmin =
+      user.role === "platformAdmin" &&
+      user.isActive &&
+      ((role !== undefined && role !== "platformAdmin") ||
+        isActive === false);
+
+    if (removesActivePlatformAdmin) {
+      const activeAdminCount = await User.countDocuments({
+        role: "platformAdmin",
+        isActive: true,
+      });
+
+      if (activeAdminCount <= 1) {
+        return res.status(400).json({
+          success: false,
+          message:
+            "Cannot demote or deactivate the last active Platform Admin",
+        });
+      }
+    }
+
     if (email !== undefined) {
       const normalizedEmail = email.trim().toLowerCase();
 
@@ -219,7 +234,7 @@ const updateUser = async (req, res) => {
 
     await user.save();
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       message: "User updated successfully",
       user: {
@@ -231,6 +246,8 @@ const updateUser = async (req, res) => {
       },
     });
   } catch (error) {
+    console.error("Update user error:", error.message);
+
     if (error.code === 11000) {
       return res.status(409).json({
         success: false,
@@ -238,7 +255,7 @@ const updateUser = async (req, res) => {
       });
     }
 
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message: "Failed to update user",
     });
