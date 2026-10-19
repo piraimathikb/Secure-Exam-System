@@ -10,6 +10,7 @@ const authorizeRoles = require("./middleware/roleMiddleware");
 const authRoutes = require("./routes/authRoutes");
 const userRoutes = require("./routes/userRoutes");
 const examinationRoutes = require("./routes/examinationRoutes");
+const questionRoutes = require("./routes/questionRoutes"); 
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -31,6 +32,8 @@ app.use("/api/users", userRoutes);
 
 // Examination management routes
 app.use("/api/examinations", examinationRoutes);
+// Question management routes
+app.use("/api/questions", questionRoutes);
 
 // Root route
 app.get("/", (req, res) => {
